@@ -110,6 +110,10 @@ Re-running an installer is idempotent. Both warn when the installed `dsh`
 version differs from the one the fork was written for; pass `-Force` (Windows)
 after re-deriving the hooks.
 
+There is deliberately **no npm registry distribution**: a registry install would
+land in a separate module tree and hit exactly the duplicate-instance problem
+above. Git clone (or a release tarball) plus the installer is the supported path.
+
 ## Register the agent in Zed
 
 If it is not registered yet, add it to Zed's settings (`settings.json`) — see
