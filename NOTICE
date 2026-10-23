@@ -1,0 +1,35 @@
+dsh-acp-commands
+================
+
+This repository contains a modified copy of the ACP bridge published by
+DeepSeek as `@deepseek-ai/dsh-acp`, which is MIT licensed.
+
+  Upstream package : @deepseek-ai/dsh-acp@0.2.1-rc.2
+  Upstream source  : https://github.com/deepseek-ai/deepseek-harness
+                     (packages/acp/acp)
+  Upstream license : MIT, Copyright (c) 2026 DeepSeek
+
+The file `lib/index.js` is that package's compiled `lib/index.js`, patched in
+four places. `docs/patches.md` documents each hook with exact snippets.
+
+Modifications, Copyright (c) 2026 Gennady Artamonov:
+
+  1. Plugin identity and dependency set: the plugin is named `acp-commands` and
+     additionally injects the `commands` service.
+  2. Command advertisement: `session/update` with `available_commands_update`
+     after `session/new`, after `session/resume`, and on `commands/change`,
+     scheduled so the triggering response reaches the client first.
+  3. Slash dispatch: a prompt that is exactly one text block starting a
+     registered command is executed through `ctx.commands.execute()` instead of
+     becoming a model turn; the settled text is returned as an
+     `agent_message_chunk`.
+  4. Fallback: unknown slash input and prompts carrying non-text blocks keep the
+     original model path.
+
+Everything else in `lib/index.js` — session lifecycle, model and reasoning
+config, MCP mounting, permission requests, persistence, teardown — is upstream
+code, unchanged.
+
+This project is an independent integration. It is not affiliated with, endorsed
+by, or sponsored by DeepSeek. "DeepSeek" and "DeepSeek Harness" are marks of
+their respective owners.

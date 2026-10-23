@@ -1,0 +1,52 @@
+{
+  "name": "dsh-acp-commands",
+  "version": "0.1.0",
+  "description": "Slash commands (/goal, /compact, /plan, /permission, /feedback) for DeepSeek Harness agents in Zed and other ACP clients.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "files": [
+    "lib/index.js",
+    "docs/patches.md",
+    "scripts/probe.ps1",
+    "install.ps1",
+    "install.sh",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md",
+    "README.md",
+    "README.ru.md"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek",
+    "deepseek-harness",
+    "acp",
+    "agent-client-protocol",
+    "zed",
+    "slash-commands",
+    "goal",
+    "coding-agent"
+  ],
+  "license": "MIT",
+  "author": "Gennady Artamonov",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyclon-b/dsh-acp-commands.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cyclon-b/dsh-acp-commands/issues"
+  },
+  "homepage": "https://github.com/cyclon-b/dsh-acp-commands#readme",
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
+  },
+  "scripts": {
+    "check": "node --check lib/index.js && node scripts/verify-hooks.mjs"
+  }
+}
